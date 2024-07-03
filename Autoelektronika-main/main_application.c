@@ -41,6 +41,15 @@ static void TimerCallBack(TimerHandle_t timer);
 const char trigger[] = "Pozdrav svima\n";
 unsigned volatile t_point;
 
+
+// this is horrible , consider using structures ?
+/*
+* conts and var names need to be more meaningful  
+* it's more readable in english
+
+
+*/
+
 /* RECEPTION DATA BUFFER */
 #define R_BUF_SIZE (32)
 uint8_t r_buffer[R_BUF_SIZE];
@@ -73,14 +82,22 @@ static uint32_t prvProcessRXCInterrupt(void)
 {
 	BaseType_t xHigherPTW = pdFALSE;
 
-	if (get_RXC_status(0) != 0) {   //interrupt sa kanala 0
-		if (xSemaphoreGiveFromISR(RXC_BinarySemaphore0, &xHigherPTW) != pdTRUE) {
+
+	//interrupt sa kanala 0
+	if (get_RXC_status(0) != 0) 
+	{   
+		if (xSemaphoreGiveFromISR(RXC_BinarySemaphore0, &xHigherPTW) != pdTRUE) 
+		{
 			printf("ERROR0 \n");
 		}
 	}
-	if (get_RXC_status(1) != 0) {   //interrupt sa kanala 1
+	
+	//interrupt sa kanala 1
+	if (get_RXC_status(1) != 0) 
+	{   
 
-		if (xSemaphoreGiveFromISR(RXC_BinarySemaphore1, &xHigherPTW) != pdTRUE) {
+		if (xSemaphoreGiveFromISR(RXC_BinarySemaphore1, &xHigherPTW) != pdTRUE) 
+		{
 			printf("ERROR1 \n");
 		}
 	}
@@ -92,9 +109,11 @@ static uint32_t OnLED_ChangeInterrupt()  //svaki klik na ledovku dovodi do inter
 {
 	BaseType_t higherPriorityTaskWoken = pdFALSE;
 	printf("LED Interrupt\n");
-	if (xSemaphoreGiveFromISR(LED_INT_BinarySemaphore, &higherPriorityTaskWoken) != pdTRUE) {
+	if (xSemaphoreGiveFromISR(LED_INT_BinarySemaphore, &higherPriorityTaskWoken) != pdTRUE) 
+	{
 		printf("ERROR \n");
 	}
+
 	portYIELD_FROM_ISR((uint32_t)higherPriorityTaskWoken);  //povratak u task pre interrupt-a
 }
 
@@ -103,57 +122,72 @@ static void TimerCallBack(TimerHandle_t timer)
 {
 	static uint32_t cnt1 = 0, cnt2 = 0;
 
-	if (send_serial_character((uint8_t)COM_CH_0, (uint8_t)'T') != 0) { // slanje info na svakih 200ms
+	if (send_serial_character((uint8_t)COM_CH_0, (uint8_t)'T') != 0) 
+	{ // slanje info na svakih 200ms
 		printf("ERROR TRANSMIT \n");
 	}
 	cnt1++;
 	cnt2++;
 
-	if (cnt1 == (uint32_t)25) {      // 25*200ms = 5000ms 
+	if (cnt1 == (uint32_t)25) 
+	{      // 25*200ms = 5000ms 
 		cnt1 = (uint32_t)0;
-		if (xSemaphoreGive(Send_BinarySemaphore, 0) != pdTRUE) {
+		if (xSemaphoreGive(Send_BinarySemaphore, 0) != pdTRUE) 
+		{
 			printf("ERROR GIVE");
 		}
 	}
-	if (cnt2 == (uint32_t)5) {       // broji 5s
+	if (cnt2 == (uint32_t)5) 
+	{       // broji 5000ms
 		cnt2 = (uint32_t)0;
-		if (xSemaphoreGive(Display_BinarySemaphore, 0) != pdTRUE) {
+		if (xSemaphoreGive(Display_BinarySemaphore, 0) != pdTRUE) 
+		{
 			printf("DISPLAY ERROR\n");
 		}
 	}
 }
 
 /* RECEIVE0*/
-static void Rec_sens_CH0_task(void* pvParameters) {
+static void Rec_sens_CH0_task(void* pvParameters) 
+{
 	uint8_t cc;
 	static char tmp_string[100], string_queue[100];
 	static uint8_t i; // koristi se u for petlji
 	static uint8_t j = 0; // promenljiva za indeks niza
-	for (;;) // umesto while(1)
+	while(1) 
 	{
-		if (xSemaphoreTake(RXC_BinarySemaphore0, portMAX_DELAY) != pdTRUE) {   //predavanje ce biti na svakih 200ms
+		if (xSemaphoreTake(RXC_BinarySemaphore0, portMAX_DELAY) != pdTRUE) 
+		{   //predavanje ce biti na svakih 200ms
 			printf("ERROR TAKE \n"); // ako semafor nije dobro uzet, javi gresku
 		}
-		if (get_serial_character(COM_CH_0, &cc) != 0) {   //karaktere smestamo u cc, ako je ispis neuspesan javi gresku
+
+		if (get_serial_character(COM_CH_0, &cc) != 0) 
+		{   //karaktere smestamo u cc, ako je ispis neuspesan javi gresku
 			printf("ERROR GET \n");
 		}
 
-		if (cc != (uint8_t)43) {       // ako znak koji dolazi nije + (ascii 43 == +)
+		if (cc != (uint8_t)43) 
+		{       // ako znak koji dolazi nije + (ascii 43 == +)
 			tmp_string[j] = (char)cc;  
-			j++;
+			++j;
 		}
-		else {
+
+		else
+		{
 			tmp_string[j] = '\0';    // ako je stigao +, zavrsi smestanje karaktera
 			j = 0;
 			//printf("String sa nultog kanala serijske %s, %c \n", tmp_string, tmp_string[0]);  
 			duzina = (uint8_t)strlen(tmp_string) % (uint8_t)12;   //carriage return, sa 13 se detektuje kraj poruke
-			for (i = 0; i < duzina; i++) {
+			for (i = 0; i < duzina; ++i) 
+			{
 				string_queue[i] = tmp_string[i]; // dokle god postoje clanovi u tmp nizu, prepisuj te clanove u red
 				tmp_string[i] = "";  //praznjenje niza
 			}
+
 			string_queue[duzina] = '\0'; //zavrsi prepisivanje reda
-			//printf("String : %s, \n", string_queue);
-			if (xQueueSend(serial_queue, &string_queue, 0) != pdTRUE) {    //smestamo u red sve sa kanala 0
+			
+			if (xQueueSend(serial_queue, &string_queue, 0) != pdTRUE) 
+			{    //smestamo u red sve sa kanala 0
 				printf("ERROR QUEUE\n");
 			}
 		}
@@ -161,34 +195,41 @@ static void Rec_sens_CH0_task(void* pvParameters) {
 }
 
 /*RECEIVE1*/
-static void Rec_PC_CH1_task(void* pvParameters) {
+static void Rec_PC_CH1_task(void* pvParameters) 
+{
 	uint8_t cc = 0;
 	static char tmp_string[100], string_queue[100];
 	static uint8_t i = 0;
 
-	for (;;) //automatski+, manuelno+, vmax 130+, prozor 2 1+
+	while(1) //automatski+, manuelno+, vmax 130+, prozor 2 1+
 	{
 
-		if (xSemaphoreTake(RXC_BinarySemaphore1, portMAX_DELAY) != pdTRUE) {
+		if (xSemaphoreTake(RXC_BinarySemaphore1, portMAX_DELAY) != pdTRUE) 
+		{
 			printf("ERROR TAKE 1 \n");
 		}
 
-		if (get_serial_character(COM_CH_1, &cc) != 0) {  // karakter ubaci na ch1
+		if (get_serial_character(COM_CH_1, &cc) != 0) 
+		{  // karakter ubaci na ch1
 			printf("ERROR GET 1\n");
 		}
 
-		if (cc != (uint8_t)43) { 
+		if (cc != (uint8_t)43) 
+		{ 
 
 			tmp_string[i] = (char)cc;   
-			i++;
+			++i;
 		}
-		else { 
+
+		else 
+		{ 
 			tmp_string[i] = '\0';   //na mjestu plusa stavi terminator
 			i = 0;
 			printf("String sa prvog kanala serijske: %s \n", tmp_string);
 			strcpy(string_queue, tmp_string);  //kopira string u red
 
-			if (xQueueSend(serial_queue, &string_queue, 0) != pdTRUE) {     //smjestamo u red sve sa kanala1
+			if (xQueueSend(serial_queue, &string_queue, 0) != pdTRUE) 
+			{     //smjestamo u red sve sa kanala1
 				printf("ERROR GET\n");
 			}
 		}
@@ -196,89 +237,110 @@ static void Rec_PC_CH1_task(void* pvParameters) {
 }
 
 /*LEDOVKE*/
-static void LED_bar_task(void* pvParameters) { 
+static void LED_bar_task(void* pvParameters) 
+{ 
 	uint8_t led_tmp, led_temp = 0;
 
 	static char tmp_string[20];
 
-	for (;;) {
+	while(1) 
+	{
+
 		printf("LED FUNKCIJA\n");
-		if (xSemaphoreTake(LED_INT_BinarySemaphore, portMAX_DELAY) != pdTRUE) { // take semafor ledovke 
+		if (xSemaphoreTake(LED_INT_BinarySemaphore, portMAX_DELAY) != pdTRUE) 
+		{ // take semafor ledovke 
 			printf("ERROR TAKE \n");
 		}
+
 		//ovdje je dosao ako je neko kliknuo na led bar, ako se desio interrupt za ledovke
 		get_LED_BAR((uint8_t)0, &led_tmp);//ocitavamo stanje nultog stupca led bara
 
-		if((led_tmp & 0x01) != 0) {
+		if((led_tmp & 0x01) != 0) 
+		{
 			ukljuceno_1 = 1;
 		}
 		else
 		{
 			ukljuceno_1 = 0;
 		}
+
 		printf("Ukljuceno1 je: %d\n", ukljuceno_1);
 
-		if ((led_tmp & 0x02) != 0) {
+		if ((led_tmp & 0x02) != 0) 
+		{
 			ukljuceno_2 = 1;
 		}
+
 		else
 		{
 			ukljuceno_2 = 0;
 		}
+
 		printf("Ukljuceno2 je: %d\n", ukljuceno_2);
 
-		if ((led_tmp & 0x04) != 0) {
+		if ((led_tmp & 0x04) != 0) 
+		{
 			ukljuceno_3 = 1;
 		}
+
 		else
 		{
 			ukljuceno_3 = 0;
 		}
+
 		printf("Ukljuceno3 je: %d\n", ukljuceno_3);
 
-		if ((led_tmp & 0x08) != 0) {
+		if ((led_tmp & 0x08) != 0) 
+		{
 			ukljuceno_4 = 1;
 		}
+
 		else
 		{
 			ukljuceno_4 = 0;
 		}
+
 		printf("Ukljuceno4 je: %d\n", ukljuceno_4);
 
-		if ((led_tmp & 0x16) != 0) {
+		if ((led_tmp & 0x16) != 0) 
+		{
 			ukljuceno_5 = 1;
 		}
+
 		else
 		{
 			ukljuceno_5 = 0;
 		}
+
 		printf("Ukljuceno5 je: %d\n", ukljuceno_5);
 
 	}
 }
 
 /*OBRADA SENZORA*/
-static void Data_proc_task(void* pvParameters) {
+static void Data_proc_task(void* pvParameters) 
+{
 	static char string_red[100];
 	static uint8_t index_v = 0, index_v1 = 0;
 	static uint16_t stotine, desetice, jedinice;
 	static float v_suma = (float)0, v_suma1 = (float)0;
 
-	for (;;)
+	while(1)
 	{
 		printf("Maksimalna brzina pri kojoj se prozori zatvaraju je: %d\n", vmax);
 		printf("Trenutna brzina auta je: %d\n", v_trenutno);
 
-		if (xQueueReceive(serial_queue, &string_red, portMAX_DELAY) != pdTRUE) {  // iz reda smjestamo u string
+		if (xQueueReceive(serial_queue, &string_red, portMAX_DELAY) != pdTRUE) 
+		{  // iz reda smjestamo u string
 			printf("ERROR\n");
 		}
 
 		string_red[duzina] = '\0'; // zavrsi prepisivanje reda
-		//("Primljen je red : %s \n", string_red); // ispisi taj red
 
 		//STRCMP ako su jednaka dva stringa vraca 0
 
-		if (strcmp(string_red, "automatski\0") == 0) {//automatski
+		if (strcmp(string_red, "automatski\0") == 0)
+		{//automatski
 			flag_info = 1;
 			flag_rezim = 1;
 			manuelno_automatski = 1;
@@ -286,52 +348,64 @@ static void Data_proc_task(void* pvParameters) {
 			printf("rezim rada %d\n", manuelno_automatski);
 		}
 
-		else if (strcmp(string_red, "manuelno\0") == 0) {//manuelno
+		else if (strcmp(string_red, "manuelno\0") == 0) 
+		{//manuelno
 			flag_info = 1;
 			flag_rezim = 1;
 			manuelno_automatski = 0;
 
-			if (manuelno_automatski == 0) {
+			if (manuelno_automatski == 0) 
+			{
 
-				if (ukljuceno_1 != 0) {
+				if (ukljuceno_1 != 0) 
+				{
 					set_LED_BAR((uint8_t)1, 0xff);
 					printf("Setovana prva ledovka\n");
 				}
-				else {
+
+				else 
+				{
 					set_LED_BAR((uint8_t)1, 0x00);
 					printf("Prva ledovka nije setovana\n");
 				}
 
-				if (ukljuceno_2 != 0) {
+				if (ukljuceno_2 != 0) 
+				{
 					set_LED_BAR((uint8_t)2, 0xff);
 					printf("Setovana druga ledovka\n");
 				}
 
-				else {
+				else 
+				{
 					set_LED_BAR((uint8_t)2, 0x00);
 					printf("Druga ledovka nije setovana\n");
 				}
 
-				if (ukljuceno_3 != 0) {
+				if (ukljuceno_3 != 0) 
+				{
 					set_LED_BAR((uint8_t)3, 0xff);
 					printf("Setovana treca ledovka\n");
 				}
 
-				else {
+				else 
+				{
 					set_LED_BAR((uint8_t)3, 0x00);
 					printf("Treca ledovka nije setovana\n");
 				}
 
-				if (ukljuceno_4 != 0) {
+				if (ukljuceno_4 != 0) 
+				{
 					set_LED_BAR((uint8_t)4, 0xff);
 					printf("Setovana cetvrta ledovka\n");
 				}
 
-				else {
+				else 
+				{
 					set_LED_BAR((uint8_t)4, 0x00);
 					printf("Cetvrta ledovka nije setovana\n");
 				}
 			}
+			
 			printf("Rezim rada %d\n", manuelno_automatski);
 		}
 
