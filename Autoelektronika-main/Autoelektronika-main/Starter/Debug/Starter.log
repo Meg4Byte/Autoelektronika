@@ -1,0 +1,23 @@
+﻿  croutine.c
+  event_groups.c
+  list.c
+  heap_4.c
+  extint.c
+  port.c
+  queue.c
+  stream_buffer.c
+  tasks.c
+  timers.c
+  HW_access.c
+  main.c
+  main_application.c
+  Generating Code...
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(114,7): warning C4002: too many arguments for function-like macro invocation 'xSemaphoreGive'
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(120,7): warning C4002: too many arguments for function-like macro invocation 'xSemaphoreGive'
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(152,19): warning C4047: '=': 'char' differs in levels of indirection from 'char [1]'
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(648,34): warning C4244: '=': conversion from 'float' to 'char', possible loss of data
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(650,35): warning C4244: '=': conversion from 'float' to 'char', possible loss of data
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(652,33): warning C4244: '=': conversion from 'float' to 'char', possible loss of data
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(654,34): warning C4244: '=': conversion from 'float' to 'char', possible loss of data
+C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\main_application.c(967,50): warning C4113: 'uint32_t (__cdecl *)()' differs in parameter lists from 'uint32_t (__cdecl *)(void)'
+  Starter.vcxproj -> C:\Users\Cain\source\repos\maybe\Autoelektronika-main(1)\Autoelektronika-main\Autoelektronika-main\Debug\Starter.exe
