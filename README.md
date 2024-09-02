@@ -1,15 +1,6 @@
 # Autoelektronika
 Upravljanje polozajem prozora u zavisnosti od brzine vozila
 
-## TO DO 
-
-  Coming when it's ready 
-
-## Added minor changes
-
-  Still not  100% ready# Autoelektronika
-Upravljanje polozajem prozora u zavisnosti od brzine vozila
-
 
 ## Pregled sistema
 - [Autoelektronika](#autoelektronika)
@@ -160,5 +151,4 @@ To znaci da se zadnja dva prozora zatvaraju nebitno od njihovog dotadasnjeg stan
 Kada se ovo dugme iskljuci prozori se vracaju u prethodno stanje.
 
 Slanjem komande 'automatski+' i namestanjem trenutne brzine tako da srednja vrednost svih prethodno unetih 10 brzina bude veca od max dozvoljenje brzine aktivira se senzor koji zatvara sve prozore , nebitno od njihovog prethodnog stanja. 
-
 
