@@ -1,154 +1,48 @@
 # Autoelektronika
-Upravljanje polozajem prozora u zavisnosti od brzine vozila
 
-
-## Pregled sistema
-- [Autoelektronika](#autoelektronika)
-  - [Pregled sistema](#pregled-sistema)
-  - [Projekat izradili:](#projekat-izradili)
-- [PERIFERIJE](#periferije)
-- [OPIS TASKOVA](#opis-taskova)
-  - [Rec\_sens\_CH0\_task](#rec_sens_ch0_task)
-  - [Rec\_PC\_CH1\_task](#rec_pc_ch1_task)
-  - [LED\_bar\_task](#led_bar_task)
-  - [Data\_proc\_task](#data_proc_task)
-  - [Send\_PC\_to\_CH1\_task](#send_pc_to_ch1_task)
-  - [Disp\_task](#disp_task)
-  - [TimerCallBack](#timercallback)
-  - [Predlog simulacije sistema](#predlog-simulacije-sistema)
+Sistem za kontrolu prozora u automobilu
 
 ## Projekat izradili:
-
-Nenad Petrovic EE69/2018
+Jelena Jović, EE18/2018
+Ljubica Potrebić, EE26/2018
 
 # PERIFERIJE
-Simulacija senzora i displeja se vrsi pomocu periferija:
-- AdvUniCom 
-- Seg7_Mux
-- LED_Bars
-
-LED_bars_plus.exe prima 5 argumenata , malim slovima su oznaceni ulazni barovi , velikim slovima izlazni.Slova su R , G , B , Y , O.
-
-Primer :
-```
-  rBGYO , bRRRO , oBYY , bR
-```
-
-Serijska komunikacija se vrsi pomocu AdvUniCom.exe, otvaranje kanala se vrsi dodavanjem broja sa imenom kanala.
-
-Primer:
-```
-AdvUnicom 0 , AdvUnicom 1 
-```
-Seg7_Mux.exe otvara 7segmetni displej duzine 4-9 , ako se izostave argumenti otvara se 4 7segmenta displeja.
-
-Primer:
-```
-Seg7_Mux 4 , Seg7_Mux 6 , Seg7_Mux 9 
-```
+Periferije koje koristimo su LED_bars_plus, Seg7_Mux displej i AdvUniCom softver simulacije serijske komunikacije.
+Pri pokretanju LED_bars_plus.exe navodimo rGBYO kao argument da bi se dobio led bar sa 1 ulaznim i 4 izlazna stupca. Ulazni stubac je crvene boje, izlazni stupci su redom zelene, plave, žute i narandžaste. 
+Prilikom pokretanja softvera za serijsku komunikaciju AdvUniCom.exe dodajemo 0 za pokretanje nultog kanala, a 1 se dodaje na istu komandu kako bi se pokrenuo prvi kanal. 
+Prilikom pokretanja displeja Seg7_Mux.exe dodajemo broj 9 kako bi se dobio displej sa 9 cifara.
 
 # OPIS TASKOVA
 
 ## Rec_sens_CH0_task 
-Ovaj task prima podatke sa senzora brzine i prozora. Karakteri se stavljaju u privremeni bafer (red) za ostale taskove. Kad stigne karakter sa kanala 0, desi se interrupt koji šalje semafor.
+Ovaj task ima zadatak da primi podatke sa senzora brzine i prozora. Informacije koje pristižu treba da budu u formatu npr. 1 0 1 0 130+ .Ukoliko je podatak o brzini dvocifren broj, poruka treba da bude u formatu npr. 1 0 1 0  80+ (između informacije o prozorima i brzine treba da bude razmak više u odnosu na onaj sa trocifrenim brojem). Dobijeni karakteri se smještaju u niz, a zatim u red da bi bili na raspolaganju ostalim taskovima. Kad god stigne neki karakter sa kanala 0, desi se interrupt koji šalje semafor.
 
 ## Rec_PC_CH1_task 
-Naredbe koje pristižu su :
-- 'manuelno'
-- 'automatski'  
-- 'brzina X' 
-- 'nivo X Y' 
-- 'tr X'
-
-Manuelno oznacava da se upravljanje vrsi preko LED barova.
-
-
-Automatski znaci da se ignorisu LED barovi (osim ako nisu klknuti dugmici za max/min brzinu i 'Child Lock Sistem').
-
-
-Brina je parametar koji zadaje max mogucu brzinu na koju se prozori zatvraju kada je srednja brzina veca od nje u automatskom rezimu rada.Brzina se zadaje u sledecem formatu : 
-
-```
-  brzina 134+ , brzina  66+
-```
-
-
-Nivo oznacava koji je zeljeni prozor i do kog nivoa se podize/spusta (0-100).Zadaje se u sledecem formatu:
-
-```
-  nivo 1 020+ , nivo 3 100+ , nivo 4 059+ , nivo 2 031+
-```
-
-Tr oznacava trenutnu brzinu kojom se vozilo krece.
-```
-tr 139+ , tr 150+ , tr  20+
-```
+Naredbe koje pritižu u ovom tasku sa kanala 0 su formata manuelno+, automatski+, vmax 150+, prozor 3 0+.Ovde dakle govorimo o režimu rada, maksimalnoj brzini posle koje se zatvaraju prozori i komandom npr. prozor 3 0+ zadaje se stanje svakog prozora pojedinačno. U okviru komande prozor, prvi parametar koji se prosleđuje govori o kom se prozoru radi (1 – levi prednji prozor, 2 desni prednji prozor, 3 – levi zadnji prozor, 4 – desni zadnji prozor), a drugi parametar govori o tome da li je prozor otvoren ili zatvoren (0 – prozor je potpuno otvoren, 1 – prozor je potpuno zatvoren). I ovaj task čeka semafor da bi se pokrenuo i izvršio. Takođe, daje interrupt svaki put kad pristigne karakter na kanal 1.
 
 ## LED_bar_task
-Ocitava stanje nultog LED bara i namesta odgovarajuce registre na ON/OFF u zavisnoti da li je dugme pritisnuto ili nije.
-Validni dugmici su 1-7 pocevsi od dole.
-Mapa dugmica je :
-- 1-4 , prozori (napred levi/desni i nazad levi/desni)
-- 5 , prikaz max izmerene brzine na LCD-u 
-- 6 , prikaz min izmerene brzine na LCD-u
-- 7 , 'Child Lock Sistem' zakljucava poslednja 2 prozora nezavisno od rezima
-  
-
-## Data_proc_task
-Ovo je glavni task u sistemu koji prikuplja informacije sa senzora koje se simulira preko AdvUniCom sistema.Sa kanala 0 na kanal 1 dolaze podaci i bivaju obrađivani zavisno od izvora.
-
-## Send_PC_to_CH1_task
-Ovaj task šalje podatke sa kanala 0 na big box kanala 1.
+Task pomoću kojeg zadajemo trenutno stanje prozora i pomoću kog na sedmosegmentnom displeju ispisujemo podatak o maksimalnoj izmerenoj brzini, i to pritiskom na odgovarajući taster ulaznog stupca  LED_bar_task-a.
 
 ## Disp_task
-Prikazuje informacije na sedmosegmentnom displeju:
+Služi za ispisivanje na sedmosegmentnom displeju. Na nultoj poziciji ispisujemo režim rada, na poziciji udaljenoj jedan razmak ispisujemo podatak o trenutnoj brzini, i razmak nakon toga ispisujemo maksimalnu brzinu (ovo se dešava samo ukoliko je pritisnut odgovarajuci taster na led baru). 
 
-- Režim rada na nultoj poziciji (0 za automatski 1 za manuelno) 
+## Send_PC_to_CH1_task
+Ovaj task služi da podatke poslate sa kanala 0 prikaže na big box-u kanala 1.
 
-- Max izmerenu brzinu na poziciji 3-5 
-  
-- Min izmerenu brzinu na poziciji 7-9
+## Data_proc_task
+Obrađujemo podatke u zavisnosti od toga iz kog taska su stigli. Podaci koji se obrađuju su režim rada, ispis na 7-segmentni displej, podaci sa senzora prozora i brzine, maksimalna brzina, kao i led bar.
 
 ## TimerCallBack
-Aktivira brojač svakih 200ms i šalje 'T' na kanal 0.  Displej se osvezi na svakih 1000ms i šalje podatke na kanal 1 svakih 5000ms.
+Aktivira funkciju za brojač svakih 200ms i pritom šalje 'T' na kanal 0. Takođe, svakih 1s osvježava displej i svakih 5s šalje potrebne podatke na kanal 1.
 
-## Predlog simulacije sistema
+# PREDLOG SIMULACIJE SISTEMA
+U padajućem meniju potrebno je izabrati Tools -> Command Prompt. U okviru Command Prompt-a uneti AdvUniCom.exe 0, a zatim i AdvUniCom.exe 1 kako bi se otvorila dva kanala serijske komunikacije. Nakon toga, takođe iz Command Prompt-a, otvoriti Seg7_Mux.exe 9 da bi se otvorio sedmosegmentni displej sa 9 cifara. Neophodan je i led bar koji se otvara komandom Led_bars_plus.exe rGBYO, gde se podrazumeva da je ulazni stubac crvene boje, a izlazni stupci su redom zelene, plave, žute i narandžaste boje. 
+Posle kompajliranja sistema, sa kanala 0 šaljemo poruku u formatu npr. prozor 3 1+. Nakon toga, šalje se poruka formata npr. vmax 144+. Sve to prikazuje se u okviru big box-a na kanalu 1.
+Zatim se podešavaju prekidači LED bar-a. Izbor prekidača svodi se na donjih 5 prekidača ulaznog stupca crvene boje – prva 4 prekidača se koriste da bi se kontrolisao nivo prozora (da li je prozor potpuno otvoren ili zatvoren), a peti prekidač sluzi za ispis maksimalne brzine pri kojoj prozori smeju da budu otvoreni na sedmosegmentnom displeju.
+Komande koje se mogu slati nakon prethodno navedenih su manuelno+ ili automatski+. Ako se preko kanala 0 pošalje komanda manuelno+, očitava se stanje prekidača simuliranih preko LED bar-a, odnosno ako je pritisnut odgovarajuci prekidač, prozor se zatvara, što se na LED bar-u vidi kao paljenje čitavog njemu odgovarajuceg stupca. Ako se promene uključeni ili isključeni prekidači, potrebno je ponovo poslati komandu manuelno+. 
+Pre nego što se pošalje komanda automatski+, potrebno je uneti komandu formata npr. 1 0 1 0 111+, što označava trenutno stanje prozora, kao I trenutnu brzinu kretanja automobila. Za unos 10 navedenih komandi, usrednjava se vrednost trenutne brzine i prikazuje se na terminalu. 
+Zatim se može preći na komandu automatski+. Nakon njenog unosa, prozori se kontrolišu prema senzoru brzine, odnosno, ako je srednja vrednost brzine kretanja vozila veća nego maksimalna brzina pri kojoj prozori smeju da budu otvoreni, svi prozori se zatvaraju sve dok se srednja brzina ne spusti. Kad srednja brzina opadne ispod maksimalne dozvoljene, prozori se vraćaju u prethodno stanje.
+Unos komandi manuelno+ ili automatski+ takodje se očitavaju na BigBox-u kanala 1.
+Na sedmosegmentnom displeju prikazuje se sledeće: na nultoj poziciji govori se o režimu rada. Ako je prikazana nula, radi se o manuelnom režimu rada, a ako je prikazana jedinica, radi se o automatskom režimu. Nakon ove cifre sledi razmak, pa prikaz trenutne brzine kretanja vozila. Ako se radi o dvocifrenoj brzini, na mestu stotine biće upisana nula. Zatim sledi razmak i na poslednje 3 cifre prikazuje se maksimalna izmerena brzina vozila. Ova vrednost biće ispisana samo ukoliko je pritisnut peti prekidač na LED baru.
 
-Ukljuciti sve periferije iz terminala.
-AdvUnicom postaviti na 0 i na 1, LCD treba unesti sa 9 cifara , LED bar boje nisu bitne samo postaviti jedan ulazni i 4 izlazna bara.
-
-Preko serijske komunikacije moguce je unositi max dozvoljenu brzinu u vec odredjenom obliku.
-
-```
-brzina 112+
-```
-
-Postavljati trenutnu brzinu komandom tr X.
-
-Svaku komadnu zavrsiti sa '+' znakom (43 u ASCII).
-
-Postaviti odredjeni prozor u zeljeno stanje , npr :
-
-```
-  nivo 2 040+
-```
-
-,potom u zavisnosti od rezima rada uneti manuelno/automatski.Na LCD-u prva cifra pokazuje rezim rada.Ako je uzeto manuelno potrebno je kliknuti na drugo dugme od dole na ulaznom LED baru i uneti komadnu 'manuelno+'.
-Ako se ponovo kilikne na dugme i unese 'manuelno+' , prozor se zatvara.
-
-Ako je rezim automatski nema potrebe za kliktanjem , samo se unosi 'nivo 3 040+' i komanda 'automatski+'.
-
-Klikom na dugme 5 od dole na ulaznom LED baru prikazuje se max izmerena brzina koja je do sada uneta.
-Ako je ovo dugme kliknutno svakim unosom nove max brzine LCD ce ispisivati novu brzinu , u kasnjenju od 5000ms.
-
-Klikom na dugme 6 od dole na ulaznom LED baru prikazuje se min izmerena brzina koja je do sada uneta.
-Ako je ovo dugme kliknutno svakim unosom nove min brzine LCD ce ispisivati novu brzinu , u kasnjenju od 5000ms.
-
-U pocetku su min i max brzine jednake.
-
-Klikom na dugme 7 od dole na ulaznom LED baru aktivira se "Child Lock Sistem".
-To znaci da se zadnja dva prozora zatvaraju nebitno od njihovog dotadasnjeg stanja i rezima rada.
-Kada se ovo dugme iskljuci prozori se vracaju u prethodno stanje.
-
-Slanjem komande 'automatski+' i namestanjem trenutne brzine tako da srednja vrednost svih prethodno unetih 10 brzina bude veca od max dozvoljenje brzine aktivira se senzor koji zatvara sve prozore , nebitno od njihovog prethodnog stanja. 
 

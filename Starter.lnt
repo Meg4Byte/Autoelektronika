@@ -1,0 +1,38 @@
+// PC-lint Plus Configuration File
+// Purpose: Analyze only main.c and main_application.c, ignore specific headers and missing files
+
+// Ignore specific FreeRTOS and other files by suppressing all messages for these files
+-efile(0, */FreeRTOS/croutine.c)
+-efile(0, */FreeRTOS/event_groups.c)
+-efile(0, */FreeRTOS/list.c)
+-efile(0, */FreeRTOS/portable/MemMang/heap_4.c)
+-efile(0, */FreeRTOS/portable/MSVC/extint.c)
+-efile(0, */FreeRTOS/portable/MSVC/port.c)
+-efile(0, */FreeRTOS/queue.c)
+-efile(0, */FreeRTOS/stream_buffer.c)
+-efile(0, */FreeRTOS/tasks.c)
+-efile(0, */FreeRTOS/timers.c)
+-efile(0, */HW_access.c)
+
+// Analyze only these files
++efile(0, */main.c)
++efile(0, */main_application.c)
+
+// Ignore errors related to specific headers
+-efile(0, */FreeRTOS.h)
+-efile(0, */task.h)
+-efile(0, */semphr.h)
+-efile(0, */timers.h)
+-efile(0, */extint.h)
+
+// Optional: Specific suppression for missing 'stdio.h' if you only want to ignore that header
+-esym(322, stdio.h)
+-esym(322, conio.h)
+
+// Ignore warnings for missing standard library headers
+-elib(0)  // Suppress all errors related to missing standard library headers
+
+// Optional: Enable MISRA checks or other specific checks
+
+
++libdir(lib)        // Include PC-lint library directory

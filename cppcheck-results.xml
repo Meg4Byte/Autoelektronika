@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.15.0"/>
+    <errors>
+        <error id="toomanyconfigs" severity="information" msg="Too many #ifdef configurations - cppcheck only checks 12 of 68 configurations. Use --force to check all configurations." verbose="The checking of the file will be interrupted because there are too many #ifdef configurations. Checking of all #ifdef configurations can be forced by --force command line option or from GUI preferences. However that may increase the checking time." cwe="398">
+            <location file="main_application.c" line="0" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="main_application.c" line="2" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;conio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;conio.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="main_application.c" line="3" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stddef.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stddef.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="FreeRTOS.h" line="34" column="0"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdint.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results." verbose="Include file: &lt;stdint.h&gt; not found. Please note: Cppcheck does not need standard library headers to get proper results.">
+            <location file="FreeRTOS.h" line="49" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../FreeRTOSConfig.h&quot; not found." verbose="Include file: &quot;../../FreeRTOSConfig.h&quot; not found.">
+            <location file="FreeRTOS.h" line="56" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../portable/MSVC/portmacro.h&quot; not found." verbose="Include file: &quot;../portable/MSVC/portmacro.h&quot; not found.">
+            <location file="portable.h" line="52" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="108" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;frconfig.h&quot; not found." verbose="Include file: &quot;frconfig.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="222" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\portable\BCC\16BitDOS\flsh186\prtmacro.h&quot; not found." verbose="Include file: &quot;..\portable\BCC\16BitDOS\flsh186\prtmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="223" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;frconfig.h&quot; not found." verbose="Include file: &quot;frconfig.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="214" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\portable\BCC\16BitDOS\PC\prtmacro.h&quot; not found." verbose="Include file: &quot;..\portable\BCC\16BitDOS\PC\prtmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="215" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/CodeWarrior/ColdFire_V2/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/CodeWarrior/ColdFire_V2/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="196" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../../Source/portable/GCC/ColdFire_V2/portmacro.h&quot; not found." verbose="Include file: &quot;../../../Source/portable/GCC/ColdFire_V2/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="192" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/ARM7_LPC2000/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/ARM7_LPC2000/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="84" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;portmacro.h&quot; not found." verbose="Include file: &quot;portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="88" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/ARM_CM3/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/ARM_CM3/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="160" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/ARM_CM3/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/ARM_CM3/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="156" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/ARM7_AT91FR40008/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/ARM7_AT91FR40008/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="148" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/H8S2329/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/H8S2329/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="144" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/HCS12/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/HCS12/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="184" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/MCF5235/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/MCF5235/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="188" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../portable/GCC/ATMega323/portmacro.h&quot; not found." verbose="Include file: &quot;../portable/GCC/ATMega323/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="52" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/MSP430F449/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/MSP430F449/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="100" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/PPC405_Xilinx/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/PPC405_Xilinx/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="200" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/PPC440_Xilinx/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/PPC440_Xilinx/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="204" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/CodeWarrior/HCS12/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/CodeWarrior/HCS12/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="172" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/ARM_CM3/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/ARM_CM3/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="168" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/ARM_CM3/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/ARM_CM3/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="164" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../portable/IAR/ATMega323/portmacro.h&quot; not found." verbose="Include file: &quot;../portable/IAR/ATMega323/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="56" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\MSP430\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\MSP430\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="96" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\LPC2000\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\LPC2000\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="124" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/MicroBlaze/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/MicroBlaze/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="176" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/MPLAB/PIC24_dsPIC/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/MPLAB/PIC24_dsPIC/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="64" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/MPLAB/PIC18F/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/MPLAB/PIC18F/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="68" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/MPLAB/PIC24_dsPIC/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/MPLAB/PIC24_dsPIC/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="60" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/MPLAB/PIC32MX/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/MPLAB/PIC32MX/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="72" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\owatcom\16bitdos\flsh186\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\owatcom\16bitdos\flsh186\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="47" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\owatcom\16bitdos\pc\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\owatcom\16bitdos\pc\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="42" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/ARM7_LPC23xx/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/ARM7_LPC23xx/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="92" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/Rowley/MSP430F449/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/Rowley/MSP430F449/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="104" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/RVDS/ARM_CM3/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/RVDS/ARM_CM3/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="152" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/GCC/ARM7_AT91SAM7S/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/GCC/ARM7_AT91SAM7S/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="112" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\AtmelSAM7S64\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\AtmelSAM7S64\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="116" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\AtmelSAM9XE\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\AtmelSAM9XE\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="120" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/SDCC/Cygnal/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/SDCC/Cygnal/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="80" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\STR71x\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\STR71x\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="128" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\GCC\STR75x\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\GCC\STR75x\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="136" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\STR75x\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\STR75x\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="132" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\IAR\STR91x\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\IAR\STR91x\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="140" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\Paradigm\Tern_EE\small\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\Paradigm\Tern_EE\small\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="180" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;..\..\Source\portable\Softune\MB96340\portmacro.h&quot; not found." verbose="Include file: &quot;..\..\Source\portable\Softune\MB96340\portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="208" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;libFreeRTOS/Include/portmacro.h&quot; not found." verbose="Include file: &quot;libFreeRTOS/Include/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="76" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;portmacro.h&quot; not found." verbose="Include file: &quot;portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="242" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;portmacro.h&quot; not found." verbose="Include file: &quot;portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="246" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;portmacro.h&quot; not found." verbose="Include file: &quot;portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="229" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/78K0R/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/78K0R/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="275" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/78K0R/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/78K0R/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="271" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="251" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="267" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="263" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="259" column="0"/>
+        </error>
+        <error id="missingInclude" severity="information" msg="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found." verbose="Include file: &quot;../../Source/portable/IAR/V850ES/portmacro.h&quot; not found.">
+            <location file="deprecated_definitions.h" line="255" column="0"/>
+        </error>
+        <error id="preprocessorErrorDirective" severity="error" msg="#error &quot;Invalid portBYTE_ALIGNMENT definition&quot;" verbose="#error &quot;Invalid portBYTE_ALIGNMENT definition&quot;" file0="main_application.c">
+            <location file="portable.h" line="80" column="3"/>
+        </error>
+        <error id="noValidConfiguration" severity="information" msg="This file is not analyzed. Cppcheck failed to extract a valid configuration. Use -v for more details." verbose="This file is not analyzed. Cppcheck failed to extract a valid configuration. The tested configurations have these preprocessor errors:\012&apos;&apos; : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012ARM7_LPC21xx_KEIL_RVDS : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012BCC_FLASH_LITE_186_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012BCC_INDUSTRIAL_PC_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012COLDFIRE_V2_CODEWARRIOR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012COLDFIRE_V2_GCC : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_ARM7 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_ARM7_ECLIPSE : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_ARMCM3 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_ARMCM3_LM3S102 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_AT91FR40008 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_H8S : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_HCS12 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_MCF5235 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_MEGA_AVR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_MSP430 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_PPC405 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012GCC_PPC440 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012HCS12_CODE_WARRIOR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012IAR_ARMCM3_LM : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012IAR_ARM_CM3 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012IAR_MEGA_AVR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012IAR_MSP430 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012LPC2000_IAR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012MICROBLAZE_GCC : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012MPLAB_DSPIC_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012MPLAB_PIC18F_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012MPLAB_PIC24_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012MPLAB_PIC32MX_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012MPU_WRAPPERS_INCLUDED_FROM_API_FILE;portUSING_MPU_WRAPPERS : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012OPEN_WATCOM_FLASH_LITE_186_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012OPEN_WATCOM_INDUSTRIAL_PC_PORT : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012ROWLEY_LPC23xx : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012ROWLEY_MSP430 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012RVDS_ARMCM3_LM3S102 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012SAM7_GCC : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012SAM7_IAR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012SAM9XE_IAR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012SDCC_CYGNAL : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012STR71X_IAR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012STR75X_GCC : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012STR75X_IAR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012STR91X_IAR : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012TERN_EE : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012_16FX_SOFTUNE : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012_FEDPICC : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__91467D : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__96340 : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__AVR32_AVR32A__;__GNUC__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__CORE__;__ICCAVR32__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__GNUC__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_78K0R_Kx3L__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_78K0R_Kx3__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_V850ES_Fx3__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_V850ES_Hx2__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_V850ES_Jx2__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_V850ES_Jx3_L__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__IAR_V850ES_Jx3__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012__ICCAVR32__ : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012configASSERT;configTIMER_TASK_PRIORITY;configTIMER_QUEUE_LENGTH;configTIMER_TASK_STACK_DEPTH;portCONFIGURE_TIMER_FOR_RUN_TIME_STATS;portALT_GET_RUN_TIME_COUNTER_VALUE : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012configMINIMAL_STACK_SIZE;configMAX_PRIORITIES;configUSE_PREEMPTION;configUSE_IDLE_HOOK;configUSE_TICK_HOOK;configUSE_16_BIT_TICKS;configMAX_CO_ROUTINE_PRIORITIES;configTIMER_TASK_PRIORITY;configTIMER_QUEUE_LENGTH;configTIMER_TASK_STACK_DEPTH;portCONFIGURE_TIMER_FOR_RUN_TIME_STATS;portALT_GET_RUN_TIME_COUNTER_VALUE;portGET_RUN_TIME_COUNTER_VALUE : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;\012portBYTE_ALIGNMENT=1 : [FreeRTOS.h:80] #error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.\012portBYTE_ALIGNMENT=16 : [FreeRTOS.h:80] #error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.\012portBYTE_ALIGNMENT=2 : [FreeRTOS.h:80] #error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.\012portBYTE_ALIGNMENT=32 : [FreeRTOS.h:80] #error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.\012portBYTE_ALIGNMENT=4 : [FreeRTOS.h:80] #error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.\012portBYTE_ALIGNMENT=8 : [FreeRTOS.h:80] #error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.\012portUSING_MPU_WRAPPERS : [portable.h:80] #error &quot;Invalid portBYTE_ALIGNMENT definition&quot;" file0="main_application.c">
+            <location file="main_application.c" line="0" column="0"/>
+        </error>
+        <error id="checkersReport" severity="information" msg="Active checkers: There was critical errors (use --checkers-report=&lt;filename&gt; to see details)" verbose="Active checkers: There was critical errors (use --checkers-report=&lt;filename&gt; to see details)"/>
+    </errors>
+</results>
